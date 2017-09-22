@@ -1,0 +1,63 @@
+
+.body {
+	margin: 0;
+	padding: 0;
+}
+
+.center-component {
+	height: 100vh;
+  width: 40%;
+  position: absolute;
+  left: 30%;
+}
+
+/*Left Component*/
+.left-component {
+	height: 100vh;
+  width: 30%;
+  position: absolute;
+  background: blue;
+}
+
+/* Changing of background colors*/
+.left-component.blue {
+  background: blue;
+}
+
+.left-component.purple {
+  background: purple;
+}
+
+.left-component.red {
+  background: red;
+}
+
+.left-component.green {
+  background: green;
+}
+
+/* Right Component*/
+.right-component {
+	height: 100vh;
+  width: 30%;
+  background: red;
+  position: absolute;
+  left: 70%;
+}
+
+/* Changing of background colors*/
+.right-component.blue {
+  background: blue;
+}
+
+.right-component.purple {
+  background: purple;
+}
+
+.right-component.red {
+  background: red;
+}
+
+.right-component.green {
+  background: green;
+}
