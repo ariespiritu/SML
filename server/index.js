@@ -16,7 +16,7 @@ app.use(
 		publicPath: webpackConfig.output.publicPath,
 		noInfo: true,
 	})
-	)
+)
 
 app.use(webpackHotMiddleware(compiler))
 
