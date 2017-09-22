@@ -10,8 +10,10 @@
   "author": "Aries Espiritu",
   "license": "ISC",
   "dependencies": {
+    "async": "^2.5.0",
     "axios": "^0.16.2",
     "express": "^4.15.4",
+    "moment": "^2.18.1",
     "mongoose": "^4.11.12",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",

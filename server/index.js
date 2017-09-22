@@ -5,6 +5,9 @@ import webpack from 'webpack'
 import webpackMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
 import mongoose from 'mongoose'
+import moment from 'moment'
+
+import Schema from './schema'
 
 const app = express()
 
@@ -41,7 +44,6 @@ mongoose.connect(dbURI, {
 		console.log('Could not connect to DB');
 	} else {
 		console.log('Database connected to: ', dbURI);
-		mongoose.set('debug', debug)
 	}
 })
 
@@ -53,9 +55,31 @@ process.on('SIGINT', () => {
 	})
 })
 
-app.get('/get-time', (req, res) => {
-	// query for last_time key
-	// I'll be setting up mongodb to my laptop
+// Initialize model
+const lastTime = mongoose.model('lastTime')
+
+app.get('/get_time', async (req, res) => {
+// Receives a request to /get-time
+	const timeNow = moment().format()
+
+	// store current time in mongoDB as last_time
+	const last = new lastTime({
+		last_time: timeNow
+	})
+	await last.save()
+
+	// query for the last_time key
+	lastTime.findOne({last_time: timeNow}).exec((error, lastTime) => {
+		if (error) {
+			res.send({ message:"Last Time: " })
+		} else {
+			if (lastTime.lastTime === '') {
+				res.send({ "Last Time": "empty" })
+			} else {
+				res.send({ "Last Time:": lastTime.last_time, "Current Time": timeNow })
+			}
+		}
+	})
 })
 
 app.get('/*', (req, res) => {
